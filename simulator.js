@@ -14,9 +14,26 @@ function student_registration() {
 
     let JSON_array = JSON.stringify(student_array);
     localStorage.setItem("student_list", JSON_array);
+
+    console.log(estudiante);
+
+    show_list(estudiante);
 }
 
-let btn_add = document.getElementById ("btn_add");
-btn_add.addEventListener("click" , student_registration);
 
-localStorage.clear()
+function show_list (estudiante){
+    let list = document.createElement("tr");
+
+    list.innerHTML = `<td>${estudiante.nombre}</td>
+                      <td>${estudiante.apellido}</td>
+                      <td>${estudiante.edad}</td>`;
+    
+    console.log(list);
+
+    let complete_list = document.getElementById("tbody");
+    complete_list.append(list);
+}
+
+
+let btn = document.getElementById ("btn_add");
+btn.addEventListener ("click" , student_registration, show_list);
